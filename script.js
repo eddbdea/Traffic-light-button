@@ -1,13 +1,17 @@
+const tenSecondsInterval = 10000;
+let index = 0;
 
-function changeLightColour(){
-    const button = document.getElementById('button-colour')
-    if (button.classList.contains('btn-danger')) {
-        button.classList.replace('btn-danger', 'btn-warning')    
-    } else if (button.classList.contains('btn-warning')) {
-        button.classList.replace('btn-warning', 'btn-success')
-    } else if (button.classList.contains('btn-success')) {
-        button.classList.replace('btn-success', 'btn-danger')
+function changeLightColour() {
+    const colours = ['btn-danger', 'btn-warning', 'btn-success'];
+    const button = document.getElementById('button-colour');
+    let clasa = button.getAttribute('class').substring(4);
+    if (index < 2) {
+        button.classList.replace(clasa, colours[index + 1]);
+        ++index;
+    } else {
+        index = 0;
+        button.classList.replace(clasa, colours[index]);
     }
 }
 
-setInterval(changeLightColour, 10000)
+setInterval(changeLightColour, tenSecondsInterval)
